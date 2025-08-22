@@ -1,49 +1,61 @@
-# 📟 Multi-Mode Calculator
+# 📱 iPhone-Style Calculator
 
-This project is a **web-based calculator** built with **HTML, CSS, and JavaScript**.  
-It supports **three different modes**:  
-- ✅ **Standard** – Basic arithmetic operations (+, -, ×, ÷, parentheses, half, clear).  
-- ✅ **Scientific** – Trigonometric functions, logarithms, square root, exponents, constants (π, e), and backspace.  
-- ✅ **Measurement Converter** – Converts between **kilograms ↔ pounds** and **meters ↔ feet**.  
+A simple, elegant **web-based calculator** inspired by the iPhone calculator.  
+Built with **HTML, CSS, and JavaScript**.  
 
 ---
 
 ## 🚀 Features
-- **Theme Toggle** – Switch between light/dark mode.  
-- **Tab Navigation** – Easily switch between Standard, Scientific, and Measurement modes.  
-- **Keyboard & Button Support** (if extended in JS).  
-- **Mobile-Friendly** (responsive layout).  
+- ✅ iPhone-inspired **dark theme design**  
+- ✅ Basic calculator operations: `+`, `−`, `×`, `÷`  
+- ✅ Special functions: `C` (clear), `±` (toggle sign), `%` (percentage)  
+- ✅ Supports decimals  
+- ✅ Responsive and mobile-friendly  
 
 ---
 
 ## 🛠️ Technologies Used
 - **HTML5** – Structure  
-- **CSS3** – Styling (Google Fonts: Poppins)  
-- **JavaScript (ES6)** – Calculator logic & mode switching  
+- **CSS3** – Styling (custom iOS-inspired UI)  
+- **JavaScript (ES6)** – Calculator logic  
 
 ---
 
 ## 📂 Project Structure
-calculator/
-│── index.html      # Main HTML structure
-│── style.css       # Styling for calculator
-│── script.js       # JavaScript logic
+iphone-calculator/
+│── index.html      # Main HTML file
+│── styles.css      # Calculator styling
+│── scripts.js      # Calculator logic
 │── README.md       # Project documentation
+
 
 ---
 
-## ⚡ Usage
-1. Open `index.html` in a browser.  
-2. Choose your preferred mode (**Standard, Scientific, or Measurement**).  
-3. Perform calculations or convert units.  
+## ⚡ How to Use
+1. Open `index.html` in your browser.  
+2. Click buttons to perform calculations.  
+3. Use:
+   - `C` → Clear all input  
+   - `±` → Toggle between positive and negative  
+   - `%` → Convert to percentage  
+   - `=` → Show result  
+
+---
+
+## 🎨 Customization
+You can easily **change the theme colors** by editing `styles.css`.  
+For example:  
+- **Dark mode (default)** → Black background with orange operators  
+- **Light mode** → White background with blue operators  
+- **Pastel / Neon themes** → Soft or vibrant colors  
 
 ---
 
 ## 🔮 Future Improvements
-- Add **history of calculations**.  
-- Support **more measurement units** (temperature, volume, etc.).  
-- Allow **keyboard input** for all functions.  
-- Add **memory functions** (M+, M-, MR, MC).  
+- Add **theme toggle button** (Light/Dark mode).  
+- Add **scientific functions** (sin, cos, tan, log).  
+- Allow **keyboard input**.  
+- Implement **calculation history**.  
 
 ---
 
