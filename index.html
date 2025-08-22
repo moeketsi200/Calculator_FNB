@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="calculator-container">
+  <div class="theme-toggle">
+    <button onclick="toggleTheme()">Toggle Theme</button>
+  </div>
+
+  <div class="mode-tabs">
+    <button onclick="switchMode('standard')" class="active">Standard</button>
+    <button onclick="switchMode('scientific')">Scientific</button>
+    <button onclick="switchMode('measurement')">Measurement</button>
+  </div>
+
+  <input type="text" id="display" disabled>
+
+  <!-- Standard Buttons -->
+  <div id="standard" class="buttons">
+    <button onclick="press('7')">7</button>
+    <button onclick="press('8')">8</button>
+    <button onclick="press('9')">9</button>
+    <button onclick="press('/')">/</button>
+
+    <button onclick="press('4')">4</button>
+    <button onclick="press('5')">5</button>
+    <button onclick="press('6')">6</button>
+    <button onclick="press('*')">*</button>
+
+    <button onclick="press('1')">1</button>
+    <button onclick="press('2')">2</button>
+    <button onclick="press('3')">3</button>
+    <button onclick="press('-')">-</button>
+
+    <button onclick="press('0')">0</button>
+    <button onclick="press('.')">.</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="press('+')">+</button>
+
+    <button onclick="press('(')">(</button>
+    <button onclick="press(')')">)</button>
+    <button onclick="half()">½</button>
+    <button onclick="clearDisplay()">C</button>
+  </div>
+
+  <!-- Scientific Buttons -->
+  <div id="scientific" class="sci-buttons hidden">
+    <button onclick="press('Math.sin(')">sin</button>
+    <button onclick="press('Math.cos(')">cos</button>
+    <button onclick="press('Math.tan(')">tan</button>
+    <button onclick="press('Math.log10(')">log</button>
+
+    <button onclick="press('Math.log(')">ln</button>
+    <button onclick="press('Math.sqrt(')">√</button>
+    <button onclick="press('**')">^</button>
+    <button onclick="press('Math.PI')">π</button>
+
+    <button onclick="press('Math.E')">e</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="backspace()">⌫</button>
+  </div>
+
+  <!-- Measurement Converter -->
+  <div id="measurement" class="convert-section hidden">
+    <input type="number" id="convertInput" placeholder="Enter value">
+    <select id="unitFrom">
+      <option value="kg">Kilogram</option>
+      <option value="lb">Pound</option>
+      <option value="m">Meter</option>
+      <option value="ft">Foot</option>
+    </select>
+    <select id="unitTo">
+      <option value="lb">Pound</option>
+      <option value="kg">Kilogram</option>
+      <option value="ft">Foot</option>
+      <option value="m">Meter</option>
+    </select>
+    <button onclick="convert()">Convert</button>
+    <input type="text" id="convertResult" disabled placeholder="Result">
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
