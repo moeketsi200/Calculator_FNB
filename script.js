@@ -1,73 +1,88 @@
 let currentInput = '';
+let previousInput = '';
+let operator = null;
 
-function press(value) {
-  currentInput += value;
-  document.getElementById('display').value = currentInput;
+const display = document.getElementById('display');
+
+function updateDisplay() {
+  display.textContent = currentInput || '0';
 }
 
-function clearDisplay() {
+function appendNumber(num) {
+  if (num === '.' && currentInput.includes('.')) return;
+  currentInput += num;
+  updateDisplay();
+}
+
+function setOperator(op) {
+  if (currentInput === '') return;
+  if (previousInput !== '') compute();
+  operator = op;
+  previousInput = currentInput;
   currentInput = '';
-  document.getElementById('display').value = '';
 }
 
-function calculate() {
-  try {
-    currentInput = eval(currentInput).toString();
-  } catch {
-    currentInput = 'Error';
-  }
-  document.getElementById('display').value = currentInput;
-}
+function compute() {
+  let result;
+  const prev = parseFloat(previousInput);
+  const curr = parseFloat(currentInput);
+  if (isNaN(prev) || isNaN(curr)) return;
 
-function half() {
-  try {
-    currentInput = (eval(currentInput) / 2).toString();
-  } catch {
-    currentInput = 'Error';
-  }
-  document.getElementById('display').value = currentInput;
-}
-
-function backspace() {
-  currentInput = currentInput.slice(0, -1);
-  document.getElementById('display').value = currentInput;
-}
-
-function switchMode(mode) {
-  document.getElementById('standard').classList.add('hidden');
-  document.getElementById('scientific').classList.add('hidden');
-  document.getElementById('measurement').classList.add('hidden');
-
-  document.getElementById(mode).classList.remove('hidden');
-
-  const tabs = document.querySelectorAll('.mode-tabs button');
-  tabs.forEach(tab => tab.classList.remove('active'));
-  event.target.classList.add('active');
-}
-
-function convert() {
-  const value = parseFloat(document.getElementById('convertInput').value);
-  const from = document.getElementById('unitFrom').value;
-  const to = document.getElementById('unitTo').value;
-  let result = 0;
-
-  if (from === to) {
-    result = value;
-  } else if (from === 'kg' && to === 'lb') {
-    result = value * 2.20462;
-  } else if (from === 'lb' && to === 'kg') {
-    result = value / 2.20462;
-  } else if (from === 'm' && to === 'ft') {
-    result = value * 3.28084;
-  } else if (from === 'ft' && to === 'm') {
-    result = value / 3.28084;
-  } else {
-    result = 'Invalid';
+  switch (operator) {
+    case '+': result = prev + curr; break;
+    case '-': result = prev - curr; break;
+    case '*': result = prev * curr; break;
+    case '/': result = curr !== 0 ? prev / curr : 'Error'; break;
+    default: return;
   }
 
-  document.getElementById('convertResult').value = result;
+  currentInput = result.toString();
+  operator = null;
+  previousInput = '';
+  updateDisplay();
 }
 
-function toggleTheme() {
-  document.body.classList.toggle('dark-mode');
+function clearAll() {
+  currentInput = '';
+  previousInput = '';
+  operator = null;
+  updateDisplay();
 }
+
+function toggleSign() {
+  if (currentInput) {
+    currentInput = (parseFloat(currentInput) * -1).toString();
+    updateDisplay();
+  }
+}
+
+function percentage() {
+  if (currentInput) {
+    currentInput = (parseFloat(currentInput) / 100).toString();
+    updateDisplay();
+  }
+}
+
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const number = btn.dataset.number;
+    const action = btn.dataset.action;
+    const value = btn.dataset.value;
+
+    if (number !== undefined) {
+      appendNumber(number);
+    } else if (action === 'clear') {
+      clearAll();
+    } else if (action === 'toggle') {
+      toggleSign();
+    } else if (action === 'percent') {
+      percentage();
+    } else if (action === 'operator') {
+      setOperator(value);
+    } else if (action === 'equals') {
+      compute();
+    }
+  });
+});
+
+updateDisplay();
